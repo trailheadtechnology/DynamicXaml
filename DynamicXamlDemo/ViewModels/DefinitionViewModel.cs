@@ -7,7 +7,22 @@ namespace DynamicXamlDemo.ViewModels
         public DefinitionViewModel()
         {
             Title = "Xaml Definition";
-            XamlDefinition = Preferences.Get(nameof(XamlDefinition), "<Label Text=\"No Data\" /><Entry Text=\"No Binding\" />");
+            XamlDefinition = Preferences.Get(nameof(XamlDefinition), "<Label Text=\"Text 1\" /><Entry Text=\"{Binding Values[Text1]}\" />");
+            JsonData = Preferences.Get(nameof(JsonData), "{Text1:\"Text 1 value\"}");
+        }
+
+        string jsonData;
+
+        public string JsonData
+        {
+            get => jsonData;
+            set
+            {
+                if (SetProperty(ref jsonData, value))
+                {
+                    Preferences.Set(nameof(JsonData), value);
+                }
+            }
         }
 
         string xamlDefinition;

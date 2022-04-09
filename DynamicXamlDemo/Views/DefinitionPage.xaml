@@ -14,15 +14,25 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout
+    <Grid
         VerticalOptions="FillAndExpand"
         HorizontalOptions="FillAndExpand"
         Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Editor
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             TextColor="Black"
             Text="{Binding XamlDefinition}"/>
-    </StackLayout>
+        <Editor
+            Grid.Row="1"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            TextColor="Black"
+            Text="{Binding JsonData}"/>
+    </Grid>
 
 </ContentPage>
