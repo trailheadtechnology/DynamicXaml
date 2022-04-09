@@ -1,0 +1,28 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DynamicXamlDemo.Views.DefinitionPage"
+             xmlns:vm="clr-namespace:DynamicXamlDemo.ViewModels"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:DefinitionViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"
+        Margin="16">
+        <Editor
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            TextColor="Black"
+            Text="{Binding XamlDefinition}"/>
+    </StackLayout>
+
+</ContentPage>
