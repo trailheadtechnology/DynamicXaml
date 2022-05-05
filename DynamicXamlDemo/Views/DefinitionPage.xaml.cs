@@ -1,15 +1,25 @@
 ﻿using System;
 using System.ComponentModel;
+using DynamicXamlDemo.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DynamicXamlDemo.Views
 {
-    public partial class DefinitionPage : ContentPage
+    public partial class DefinitionPage
     {
+        DefinitionViewModel vm => BindingContext as DefinitionViewModel;
+        
         public DefinitionPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            vm?.LoadData();
         }
     }
 }

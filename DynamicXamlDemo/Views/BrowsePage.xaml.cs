@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace DynamicXamlDemo.Views
 {
-    public partial class BrowsePage : ContentPage
+    public partial class BrowsePage
     {
         
         public BrowsePage()
@@ -20,6 +20,13 @@ namespace DynamicXamlDemo.Views
             {
                 vm.ContentPresenter = DynamicContentPresenter;
             }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            
+            vm.SaveData();
         }
 
         BrowseViewModel vm => BindingContext as BrowseViewModel;

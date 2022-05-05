@@ -3,11 +3,11 @@
              x:Class="DynamicXamlDemo.Views.DefinitionPage"
              xmlns:vm="clr-namespace:DynamicXamlDemo.ViewModels"
              Title="{Binding Title}">
-    
+
     <ContentPage.BindingContext>
         <vm:DefinitionViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>
@@ -19,20 +19,30 @@
         HorizontalOptions="FillAndExpand"
         Margin="16">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Editor
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            TextColor="Black"
-            Text="{Binding XamlDefinition}"/>
-        <Editor
-            Grid.Row="1"
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            TextColor="Black"
-            Text="{Binding JsonData}"/>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Definition" HorizontalOptions="StartAndExpand" TextColor="Black" />
+                <Button Text="Format" Command="{Binding FormatXamlCommand}" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <Editor
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                TextColor="Black"
+                Text="{Binding XamlDefinition}" />
+        </StackLayout>
+
+        <StackLayout Grid.Row="1">
+            <Label Text="Values" HorizontalOptions="StartAndExpand" TextColor="Black" />
+            <Editor
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                TextColor="Black"
+                Text="{Binding JsonData}" />
+        </StackLayout>
+
     </Grid>
 
 </ContentPage>

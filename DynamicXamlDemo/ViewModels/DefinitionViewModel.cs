@@ -1,4 +1,7 @@
-﻿using Xamarin.Essentials;
+﻿using System;
+using System.Xml.Linq;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace DynamicXamlDemo.ViewModels
 {
@@ -7,11 +10,30 @@ namespace DynamicXamlDemo.ViewModels
         public DefinitionViewModel()
         {
             Title = "Xaml Definition";
-            XamlDefinition = Preferences.Get(nameof(XamlDefinition), "<Label Text=\"Text 1\" /><Entry Text=\"{Binding Values[Text1]}\" />");
-            JsonData = Preferences.Get(nameof(JsonData), "{Text1:\"Text 1 value\"}");
+            FormatXamlCommand = new Command(OnFormatXaml);
+        }
+
+        void OnFormatXaml()
+        {
+            try
+            {
+                XDocument doc = XDocument.Parse(XamlDefinition);
+                XamlDefinition = doc.ToString();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         string jsonData;
+
+        public void LoadData()
+        {
+            XamlDefinition = Preferences.Get(nameof(XamlDefinition), "<Label Text=\"Text 1\" /><Entry Text=\"{Binding Values[Text1]}\" />");
+            JsonData = Preferences.Get(nameof(JsonData), "{Text1:\"Text 1 value\"}");
+        }
+        
+        public Command FormatXamlCommand { get; }
 
         public string JsonData
         {
